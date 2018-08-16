@@ -54,14 +54,14 @@ NSRoundRectFill(NSRect r, float radius)
 
 - (NSGradient *) _windowTitlebarGradient
 {
-  NSColor* gradientColor1 = [NSColor colorWithCalibratedRed: 0.833
-                                                      green: 0.833
-                                                       blue: 0.833
-                                                      alpha: 1];
-  NSColor* gradientColor2 = [NSColor colorWithCalibratedRed: 0.667
-                                                      green: 0.667
-                                                       blue: 0.667
-                                                      alpha: 1];
+  NSColor* gradientColor1 = [NSColor colorWithCalibratedRed: 0.933
+                                                      green: 0.933
+                                                       blue: 0.933
+                                                      alpha: 0.9];
+  NSColor* gradientColor2 = [NSColor colorWithCalibratedRed: 0.767
+                                                      green: 0.767
+                                                       blue: 0.767
+                                                      alpha: 0.990];
 
   return [[NSGradient alloc] initWithStartingColor: gradientColor1
                                        endingColor: gradientColor2];
@@ -75,7 +75,7 @@ NSRoundRectFill(NSRect r, float radius)
   NSColor* strokeColor = [NSColor colorWithCalibratedRed: 0.6 green: 0.6 blue: 0.6 alpha: 1];
   NSColor* strokeColorLight = [NSColor colorWithCalibratedRed: 0.8 green: 0.8 blue: 0.8 alpha: 1];//[strokeColor highlightWithLevel: 0.3];
   NSColor* strokeColorLight2 = [NSColor colorWithCalibratedRed: 0.8 green: 0.8 blue: 0.8 alpha: 1];//[strokeColor highlightWithLevel: 0.3];
-  NSColor* strokeColorLight3 = [NSColor colorWithCalibratedRed: 0.8 green: 0.8 blue: 0.8 alpha: 0];//[strokeColor highlightWithLevel: 0.3];
+  NSColor* strokeColorLight3 = [NSColor colorWithCalibratedRed: 0.8 green: 0.8 blue: 0.8 alpha: 1];//[strokeColor highlightWithLevel: 0.3];
   NSGradient* gradient = [[NSGradient alloc] initWithStartingColor: strokeColorLight endingColor: strokeColorLight2];
   // THIS SHOULD BE THE BACKGROUND COLOR
   NSColor * whiteColor = [NSColor whiteColor];
