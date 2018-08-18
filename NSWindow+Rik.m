@@ -7,32 +7,49 @@
 
 @interface DefaultButtonAnimation: NSAnimation
 {
-  NSButtonCell * defaultbuttoncell;
+  NSButtonCell * defaultButtonCell;
   BOOL reverse;
 }
 
-@property (nonatomic, assign) BOOL reverse;
-@property (retain) NSButtonCell * defaultbuttoncell;
 
 @end
 
 @implementation DefaultButtonAnimation
 
-@synthesize reverse;
-@synthesize defaultbuttoncell;
+- (BOOL) reverse {
+  return reverse;
+}
+- (void) setReverse: (BOOL) aReverse {
+  reverse = aReverse;
+}
+
+- (NSButtonCell *) defautButtonCell {
+  return defaultButtonCell;
+}
+
+- (void) setDefaultButtonCell: (NSButtonCell *) aDefaultButtonCell {
+  if (aDefaultButtonCell != defaultButtonCell) {
+    [aDefaultButtonCell retain];
+    [defaultButtonCell release];
+    defaultButtonCell = aDefaultButtonCell;
+  }
+}
+  
 
 - (void)setCurrentProgress:(NSAnimationProgress)progress
 {
   [super setCurrentProgress: progress];
-  if(defaultbuttoncell)
+  if(defaultButtonCell)
     {
         if(reverse)
         {
-          defaultbuttoncell.pulseProgress = [NSNumber numberWithFloat: 1.0 - progress];
+          //defaultButtonCell.pulseProgress = [NSNumber numberWithFloat: 1.0 - progress];
+	  [defaultButtonCell setPulseProgress: [NSNumber numberWithFloat: 1.0 - progress]];
         }else{
-          defaultbuttoncell.pulseProgress = [NSNumber numberWithFloat: progress];
+          //defaultButtonCell.pulseProgress = [NSNumber numberWithFloat: progress];
+	  [defaultButtonCell setPulseProgress: [NSNumber numberWithFloat: progress]];
         }
-        [[defaultbuttoncell controlView] setNeedsDisplay: YES];
+        [[defaultButtonCell controlView] setNeedsDisplay: YES];
     }
   if (progress >= 1.0)
   {
@@ -72,12 +89,14 @@
 {
   animation = [[DefaultButtonAnimation alloc] initWithDuration:0.7
                                 animationCurve:NSAnimationEaseInOut];
-  animation.reverse = reverse;
+  //animation.reverse = reverse;
+  [animation setReverse: reverse];
   [animation addProgressMark: 1.0];
   [animation setDelegate: self];
   [animation setFrameRate:30.0];
   [animation setAnimationBlockingMode:NSAnimationNonblocking];
-  animation.defaultbuttoncell = buttoncell;
+  //animation.defaultButtonCell = buttoncell;
+  [animation setDefaultButtonCell: buttoncell];
   [animation startAnimation];
 }
 - (void)animation:(NSAnimation *)a
