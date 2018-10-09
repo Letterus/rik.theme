@@ -41,7 +41,8 @@ ADDITIONAL_TOOL_LIBS =
 $(BUNDLE_NAME)_RESOURCE_FILES = \
 	./Resources/ThemeImages\
 	./Resources/ThemeTiles\
-	./Resources/*.clr
+	./Resources/*.clr\
+	./Resources/rik_preview.png
 include $(GNUSTEP_MAKEFILES)/bundle.make
 
 -include GNUmakefile.postamble
