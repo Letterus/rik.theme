@@ -2,8 +2,7 @@
 #include <AppKit/NSAnimation.h>
 
 @interface Rik(RikButton)
-{
-}
+
 @end
 
 
