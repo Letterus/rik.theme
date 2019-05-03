@@ -10,21 +10,12 @@
 }
 - (void) drawBezelWithFrame: (NSRect)cellFrame inView: (NSView *)controlView
 {
-    /* Former Code : warning and error with gcc
-     GSThemeControlState buttonState =  [self themeControlState];*/
-  
-  SEL aSelector = @selector(themeControlState);  
-  GSThemeControlState buttonState = (GSThemeControlState) [self performSelector:aSelector
-								    withObject:nil];
-    NSBezierPath * path = [self pathForFrame: cellFrame];
-    [(Rik*)[GSTheme theme] drawPathButton: path
-				       in: self
-				    state: buttonState];
+  GSThemeControlState buttonState = [self themeControlState];
+  NSBezierPath * path = [self pathForFrame: cellFrame];
+  [(Rik*)[GSTheme theme] drawPathButton: path
+                               in: self
+                            state: buttonState];
 }
-  
-
-
-
 - (NSBezierPath*) pathForFrame: (NSRect)cellFrame
 {
 

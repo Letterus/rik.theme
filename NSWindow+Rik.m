@@ -11,6 +11,7 @@
   BOOL reverse;
 }
 
+
 @end
 
 @implementation DefaultButtonAnimation
@@ -21,7 +22,6 @@
 - (void) setReverse: (BOOL) aReverse {
   reverse = aReverse;
 }
-
 
 - (NSButtonCell *) defautButtonCell {
   return defaultButtonCell;
@@ -38,7 +38,7 @@
 
 - (void)setCurrentProgress:(NSAnimationProgress)progress
 {
-  /*  [super setCurrentProgress: progress];
+  [super setCurrentProgress: progress];
   if(defaultButtonCell)
     {
         if(reverse)
@@ -55,7 +55,7 @@
   {
     reverse = !reverse;
     [self startAnimation];
-    }*/
+  }
 }
 
 @end
@@ -63,30 +63,30 @@
 @interface DefaultButtonAnimationController : NSObject
 
 {
-  /*DefaultButtonAnimation * animation;*/
-    NSButtonCell * buttoncell;
+  DefaultButtonAnimation * animation;
+  NSButtonCell * buttoncell;
 }
 
 @property (retain) NSButtonCell * buttoncell;
-/*@property (retain) NSAnimation * animation;*/
+@property (retain) NSAnimation * animation;
 
 @end
 @implementation DefaultButtonAnimationController
 @synthesize buttoncell;
-/*@synthesize animation;*/
+@synthesize animation;
 - (id) initWithButtonCell: (NSButtonCell*) cell
 {
-  if ((self = [super init])) {
+  if (self = [super init]) {
     buttoncell = cell;
   }
   return self;
 }
 - (void) startPulse
 {
-  /* [self startPulse: NO];*/
+  [self startPulse: NO];
 }
 - (void) startPulse: (BOOL) reverse
-{/*
+{
   animation = [[DefaultButtonAnimation alloc] initWithDuration:0.7
                                 animationCurve:NSAnimationEaseInOut];
   //animation.reverse = reverse;
@@ -97,13 +97,13 @@
   [animation setAnimationBlockingMode:NSAnimationNonblocking];
   //animation.defaultButtonCell = buttoncell;
   [animation setDefaultButtonCell: buttoncell];
-  [animation startAnimation];*/
+  [animation startAnimation];
 }
 - (void)animation:(NSAnimation *)a
             didReachProgressMark:(NSAnimationProgress)progress
-{/*
+{
   //[animation stopAnimation];
-  //[self startPulse: !animation.reverse];*/
+  //[self startPulse: !animation.reverse];
 }
 @end
 @implementation NSWindow(RikTheme)
@@ -164,8 +164,8 @@
   [aCell setKeyEquivalent: @"\r"];
   [aCell setKeyEquivalentModifierMask: 0];
   [aCell setIsDefaultButton: [NSNumber numberWithBool: YES]];
-  //DefaultButtonAnimationController * animationcontroller = [[DefaultButtonAnimationController alloc] initWithButtonCell: aCell];
-  // [animationcontroller startPulse];
+  DefaultButtonAnimationController * animationcontroller = [[DefaultButtonAnimationController alloc] initWithButtonCell: aCell];
+  [animationcontroller startPulse];
 }
 - (void) animateDefaultButton: (id)sender
 {
