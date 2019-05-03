@@ -1,6 +1,7 @@
 #include <AppKit/AppKit.h>
 #include "RikScrollerArrowCell.h"
 #include "Rik.h"
+#import "NSButtonCell+Rik.h"
 
 @implementation RikScrollerArrowCell
 
@@ -12,10 +13,11 @@
 {
   GSThemeControlState buttonState = [self themeControlState];
   NSBezierPath * path = [self pathForFrame: cellFrame];
-  [(Rik*)[GSTheme theme] drawPathButton: path
-                               in: self
-                            state: buttonState];
+    [(Rik*)[GSTheme theme] drawPathButton: path
+				       in: self
+				    state: buttonState];
 }
+  
 - (NSBezierPath*) pathForFrame: (NSRect)cellFrame
 {
 
