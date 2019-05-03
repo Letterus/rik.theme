@@ -8,25 +8,25 @@ NSString * const kRikPulseProgressKey = @"kRikPulseProgressKey";
 @implementation NSButtonCell(RikDefaultButtonAnimation)
 - (void)setIsDefaultButton:(NSNumber*) val
 {
-  objc_setAssociatedObject(self, kRikIsDefaultButton, val, OBJC_ASSOCIATION_COPY);
+  //objc_setAssociatedObject(self, kRikIsDefaultButton, val, OBJC_ASSOCIATION_COPY);
 }
 
 - (NSNumber *) isDefaultButton
 {
-	return objc_getAssociatedObject(self, kRikIsDefaultButton);
+  //	return objc_getAssociatedObject(self, kRikIsDefaultButton);
 }
 - (BOOL)defaultButton
 {
-	return [[self isDefaultButton] boolValue];
+  //	return [[self isDefaultButton] boolValue];
 }
 - (void)setPulseProgress:(NSNumber *)pulseProgress
 {
-	objc_setAssociatedObject(self, kRikPulseProgressKey, pulseProgress, OBJC_ASSOCIATION_COPY);
+  //	objc_setAssociatedObject(self, kRikPulseProgressKey, pulseProgress, OBJC_ASSOCIATION_COPY);
 }
 
 - (NSNumber*)pulseProgress
 {
-	return objc_getAssociatedObject(self, kRikPulseProgressKey);
+  //	return objc_getAssociatedObject(self, kRikPulseProgressKey);
 }
 @end
 
@@ -67,14 +67,15 @@ NSString * const kRikPulseProgressKey = @"kRikPulseProgressKey";
         }
     }
     //PULSE ANIMATION COLOR IF IS PRESSED DONT ANIMATE..
-    if([cell class] == [NSButtonCell class] && state != GSThemeSelectedState)
+  /*  if([cell class] == [NSButtonCell class] && state != GSThemeSelectedState)
     {
       NSButtonCell * bc = (NSButtonCell *)cell;
       if(bc.isDefaultButton)
         {
-          color = [self pulseColorInCell: bc];
+	  // color = [self pulseColorInCell: bc];
+	  color = [NSColor whiteColor];
         }
-    }
+	}*/
   return color;
 }
 - (NSBezierPath *) _roundBezierPath: (NSRect) frame
