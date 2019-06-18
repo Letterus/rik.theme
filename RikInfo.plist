@@ -1,6 +1,21 @@
 {
-	ThemeDescription="A Theme for GNUstep";
-	ThemeName="Rik";
-	ThemeRelease="0.1";
-	Authors=("Riccardo Canalicchio <riccardo.canalicchio@gmail.com>");
+	GSThemeDescription="A Theme for GNUstep";
+	GSThemeName="Rik";
+    	GSThemeAuthors = (
+		       "Riccardo Canalicchio",
+		       "Alessandro Sangiuliano",
+		       "Bertrand Dekoninck"
+    		       );		       
+    	GSThemeDetails = "A Theme for GNUstep";
+    	GSThemeDomain = {
+		      GSBackHandlesWindowDecorations = NO;
+		      NSMenuInterfaceStyle = NSMacintoshInterfaceStyle;
+		      RikMenuBarTransparency = 0.95;
+		      MenuShouldShowIcon = YES;
+    		      };
+    	GSThemeIcon = "ThemeIcon.png";
+	GSThemeLicense = "";
+    	GSThemeTiles = {
+    	};
+    	GSThemeVersion = "0.1";
 }
