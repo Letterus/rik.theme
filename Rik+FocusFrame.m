@@ -103,10 +103,10 @@
       switch (aType)
         {
           case NSLineBorder:
-            return NSMakeSize(4, 4);
+            return NSMakeSize(4, 4);//was 4,4
           case NSGrooveBorder:
           case NSBezelBorder:
-            return NSMakeSize(4, 4);
+            return NSMakeSize(1, 1);//was 4,4
           case NSNoBorder:
           default:
             return NSZeroSize;

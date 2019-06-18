@@ -54,14 +54,14 @@ NSRoundRectFill(NSRect r, float radius)
 
 - (NSGradient *) _windowTitlebarGradient
 {
-  NSColor* gradientColor1 = [NSColor colorWithCalibratedRed: 0.833
-                                                      green: 0.833
-                                                       blue: 0.833
+  NSColor* gradientColor1 = [NSColor colorWithCalibratedRed: 0.933
+                                                      green: 0.933
+                                                       blue: 0.933
                                                       alpha: 1];
-  NSColor* gradientColor2 = [NSColor colorWithCalibratedRed: 0.667
-                                                      green: 0.667
-                                                       blue: 0.667
-                                                      alpha: 1];
+  NSColor* gradientColor2 = [NSColor colorWithCalibratedRed: 0.767
+                                                      green: 0.767
+                                                       blue: 0.767
+                                                      alpha: 0.95];
 
   return [[NSGradient alloc] initWithStartingColor: gradientColor1
                                        endingColor: gradientColor2];

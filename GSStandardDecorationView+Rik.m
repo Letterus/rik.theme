@@ -2,9 +2,9 @@
 #import <GNUstepGUI/GSTheme.h>
 
 #define TITLEBAR_BUTTON_SIZE 15
-#define TITLEBAR_PADDING_LEFT 10.5
-#define TITLEBAR_PADDING_RIGHT 10.5
-#define TITLEBAR_PADDING_TOP 5.5
+#define TITLEBAR_PADDING_LEFT 10// was7 
+#define TITLEBAR_PADDING_RIGHT 10// was7 
+#define TITLEBAR_PADDING_TOP 5
 @interface GSStandardWindowDecorationView(RikTheme)
 
 @end
@@ -26,15 +26,17 @@
   if (hasCloseButton)
     {
       closeButtonRect = NSMakeRect(
-      [self bounds].size.width - TITLEBAR_BUTTON_SIZE - TITLEBAR_PADDING_RIGHT, [self bounds].size.height -  TITLEBAR_BUTTON_SIZE - TITLEBAR_PADDING_TOP, TITLEBAR_BUTTON_SIZE, TITLEBAR_BUTTON_SIZE);
+				   TITLEBAR_PADDING_LEFT, [self bounds].size.height - TITLEBAR_BUTTON_SIZE - TITLEBAR_PADDING_TOP, TITLEBAR_BUTTON_SIZE, TITLEBAR_BUTTON_SIZE);
       [closeButton setFrame: closeButtonRect];
     }
   if (hasMiniaturizeButton)
     {
-      miniaturizeButtonRect = NSMakeRect(
-      TITLEBAR_PADDING_LEFT, [self bounds].size.height - TITLEBAR_BUTTON_SIZE - TITLEBAR_PADDING_TOP, TITLEBAR_BUTTON_SIZE, TITLEBAR_BUTTON_SIZE);
-      [miniaturizeButton setFrame: miniaturizeButtonRect];
+       miniaturizeButtonRect = NSMakeRect(
+     1.4*TITLEBAR_PADDING_LEFT+ TITLEBAR_BUTTON_SIZE, [self bounds].size.height -  TITLEBAR_BUTTON_SIZE - TITLEBAR_PADDING_TOP, TITLEBAR_BUTTON_SIZE, TITLEBAR_BUTTON_SIZE);
+       [miniaturizeButton setFrame: miniaturizeButtonRect];
+     
     }
+
 }
 
 @end

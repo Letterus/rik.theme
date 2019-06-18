@@ -17,7 +17,7 @@ NSString * const kRikPulseProgressKey = @"kRikPulseProgressKey";
 }
 - (BOOL)defaultButton
 {
-  //	return [[self isDefaultButton] boolValue];
+  	return [[self isDefaultButton] boolValue];
 }
 - (void)setPulseProgress:(NSNumber *)pulseProgress
 {
@@ -67,7 +67,7 @@ NSString * const kRikPulseProgressKey = @"kRikPulseProgressKey";
         }
     }
     //PULSE ANIMATION COLOR IF IS PRESSED DONT ANIMATE..
-  /*  if([cell class] == [NSButtonCell class] && state != GSThemeSelectedState)
+    if([cell class] == [NSButtonCell class] && state != GSThemeSelectedState)
     {
       NSButtonCell * bc = (NSButtonCell *)cell;
       if(bc.isDefaultButton)
@@ -75,7 +75,7 @@ NSString * const kRikPulseProgressKey = @"kRikPulseProgressKey";
 	  // color = [self pulseColorInCell: bc];
 	  color = [NSColor whiteColor];
         }
-	}*/
+    }
   return color;
 }
 - (NSBezierPath *) _roundBezierPath: (NSRect) frame

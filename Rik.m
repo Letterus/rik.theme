@@ -11,7 +11,7 @@
   return RETAIN([NSColor colorWithCalibratedRed: 0.4
                                           green: 0.4
                                            blue: 0.4
-                                          alpha: 1]);
+                                          alpha: 1.0]);
 }
 @end
 

@@ -6,19 +6,23 @@
 @end
 
 @implementation Rik(RikMenu)
+
 - (NSColor *) menuBorderColor
 {
-  NSColor *color = [NSColor colorWithCalibratedRed: 0.212 green: 0.184 blue: 0.176 alpha: 1.0];
+  NSColor *color = [NSColor colorWithCalibratedRed: 0.212 green: 0.184 blue: 0.176 alpha: 0.0];
   return color;
 }
 - (NSColor *) menuBackgroundColor
 {
-  NSColor *color = [NSColor colorWithCalibratedRed: 0.992 green: 0.992 blue: 0.992 alpha: 1.0];
+  NSUserDefaults *theme_defaults = [NSUserDefaults standardUserDefaults];
+  float transparency = [theme_defaults floatForKey:@"RikMenuBarTransparency"];    
+  NSColor *color = [NSColor colorWithCalibratedRed: 0.992 green: 0.992 blue: 0.992 alpha: transparency];
+  //NSColor *color = [NSColor colorWithCalibratedRed: 0.4 green: 0.4 blue: 0.4 alpha: 0.5];
   return color;
 }
 - (NSColor *) menuItemBackgroundColor
 {
-  NSColor *color = [NSColor colorWithCalibratedRed: 0.992 green: 0.992 blue: 0.992 alpha: 0.9];
+  NSColor *color = [NSColor colorWithCalibratedRed: 0.992 green: 0.992 blue: 0.992 alpha: 0.95];
   return color;
 }
 - (CGFloat) menuSubmenuHorizontalOverlap
@@ -27,7 +31,7 @@
 }
 -(CGFloat) menuSubmenuVerticalOverlap
 {
-  return 6;
+  return 0;
 }
 - (CGFloat) menuBarHeight
 {
@@ -43,6 +47,13 @@
   return 1;
 }
 
+- (BOOL) menuShouldShowIcon
+{
+  NSUserDefaults *theme_defaults = [NSUserDefaults standardUserDefaults];
+  BOOL MenuShouldShowIcon =   [theme_defaults boolForKey:@"MenuShouldShowIcon"]; 
+  return MenuShouldShowIcon;
+}
+
 - (void) drawMenuRect: (NSRect)rect
          inView: (NSView *)view
    isHorizontal: (BOOL)horizontal
@@ -52,7 +63,7 @@
   int         howMany = [itemCells count];
   NSMenuView *menuView = (NSMenuView *)view;
   NSRect      bounds = [view bounds];
-
+  //[view setBounds: bounds];
   NSRect r = NSIntersectionRect(bounds, rect);
   NSRectFillUsingOperation(bounds, NSCompositeClear);
   NSBezierPath * menuPath;
@@ -118,8 +129,8 @@
   NSRect r = NSIntersectionRect(bounds, dirtyRect);
   NSRectFillUsingOperation(r, NSCompositeClear);
   NSBezierPath * roundedRectanglePath = [NSBezierPath bezierPathWithRoundedRect:r  xRadius: 4 yRadius: 4];
-  NSColor *borderColor = [self menuBorderColor];
-  [borderColor setStroke];
+  //NSColor *borderColor = [self menuBorderColor];
+  //[borderColor setStroke];
   [roundedRectanglePath fill];
   [roundedRectanglePath stroke];
 }
@@ -132,11 +143,11 @@
 {
 
 
-  NSColor * backgroundColor = [self menuBackgroundColor];
+  NSColor * backgroundColor = [self menuItemBackgroundColor];
   NSColor* selectedBackgroundColor1 = [NSColor colorWithCalibratedRed: 0.392 green: 0.533 blue: 0.953 alpha: 1];
   NSColor* selectedBackgroundColor2 = [NSColor colorWithCalibratedRed: 0.165 green: 0.373 blue: 0.929 alpha: 1];
 
-  NSColor* menuItemBackground = [self menuBackgroundColor];
+  NSColor* menuItemBackground = [self menuItemBackgroundColor];
   NSGradient* menuitemgradient = [[NSGradient alloc] initWithStartingColor: selectedBackgroundColor1
                                                                endingColor: selectedBackgroundColor2];
   NSColor * c;
