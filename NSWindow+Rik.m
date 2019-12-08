@@ -92,6 +92,30 @@
 }
 
 @end
+
+
+static Ivar defaultButtonCell_ivar(void)
+{
+  static Ivar iv;
+  if (iv == NULL)
+    {
+      iv = class_getInstanceVariable([NSWindow class], "_defaultButtonCell");
+      NSCAssert(iv, @"Unable to find _defaultButtonCell instance variable of NSWindow");
+    }
+  return iv;
+}
+
+static Ivar f_ivar(void)
+{
+  static Ivar iv;
+  if (iv == NULL)
+    {
+      iv = class_getInstanceVariable([NSWindow class], "_f");
+      NSCAssert(iv, @"Unable to find _f instance variable of NSWindow");
+    }
+  return iv;
+}
+
 @implementation NSWindow(RikTheme)
 
 + (NSButton *) standardWindowButton: (NSWindowButton)button
@@ -144,8 +168,10 @@
 }
 - (void) setDefaultButtonCell: (NSButtonCell *)aCell
 {
-  ASSIGN(_defaultButtonCell, aCell);
-  _f.default_button_cell_key_disabled = NO;
+  object_setIvar(self, defaultButtonCell_ivar(), aCell);
+
+  struct GSWindowFlagsType* f = (struct GSWindowFlagsType*) object_getIvar(self, f_ivar());
+  f->default_button_cell_key_disabled = NO;
 
   [aCell setKeyEquivalent: @"\r"];
   [aCell setKeyEquivalentModifierMask: 0];

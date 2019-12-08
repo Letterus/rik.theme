@@ -1,5 +1,28 @@
 #include "Rik.h"
 
+
+static Ivar cell_ivar(void)
+{
+  static Ivar iv;
+  if (iv == NULL)
+    {
+      iv = class_getInstanceVariable([NSSegmentedCell class], "_cell");
+      NSCAssert(iv, @"Unable to find _cell instance variable of NSSegmentedCell");
+    }
+  return iv;
+}
+
+static Ivar items_ivar(void)
+{
+  static Ivar iv;
+  if (iv == NULL)
+    {
+      iv = class_getInstanceVariable([NSSegmentedCell class], "_items");
+      NSCAssert(iv, @"Unable to find _items instance variable of NSSegmentedCell");
+    }
+  return iv;
+}
+
 @interface NSSegmentedCell(RikTheme)
 @end
 @implementation NSSegmentedCell(RikTheme)
@@ -7,14 +30,17 @@
 
 - (NSColor*) textColor
 {
-  //IT DOES NOT WORKS
-  if(_cell.state == GSThemeSelectedState)
+  //IT DOES NOT WORK (??)
+  struct GSCellFlagsType *myCell = (struct GSCellFlagsType*) object_getIvar(self, cell_ivar());
+
+  if(myCell->state == GSThemeSelectedState)
     return [NSColor whiteColor];
-  if (_cell.is_disabled)
+  if (myCell->is_disabled)
     return [NSColor disabledControlTextColor];
   else
     return [NSColor controlTextColor];
 }
+
 - (void) _drawBorderAndBackgroundWithFrame: (NSRect)cellFrame
                                     inView: (NSView*)controlView
 {
@@ -27,8 +53,9 @@
   [strokeColorButton setStroke];
   [roundedRectanglePath setLineWidth: 1];
   [roundedRectanglePath stroke];
+  NSMutableArray *items = object_getIvar(self, items_ivar());
   NSInteger i;
-  NSUInteger count = [_items count];
+  NSUInteger count = [items count];
   NSRect frame = cellFrame;
   NSRect controlFrame = [controlView frame];
 
@@ -37,7 +64,7 @@
   CGFloat offsetX = 0;
   for (i = 0; i < count-1;i++)
     {
-      frame.size.width = [[_items objectAtIndex: i] width];
+      frame.size.width = [[items objectAtIndex: i] width];
       if(frame.size.width == 0.0)
         {
           frame.size.width = (controlFrame.size.width - frame.origin.x) / (count);
