@@ -1,17 +1,5 @@
 #include "Rik.h"
 
-
-static Ivar cell_ivar(void)
-{
-  static Ivar iv;
-  if (iv == NULL)
-    {
-      iv = class_getInstanceVariable([NSSegmentedCell class], "_cell");
-      NSCAssert(iv, @"Unable to find _cell instance variable of NSSegmentedCell");
-    }
-  return iv;
-}
-
 static Ivar items_ivar(void)
 {
   static Ivar iv;
@@ -31,11 +19,12 @@ static Ivar items_ivar(void)
 - (NSColor*) textColor
 {
   //IT DOES NOT WORK (??)
-  struct GSCellFlagsType *myCell = (struct GSCellFlagsType*) object_getIvar(self, cell_ivar());
+  struct GSCellFlagsType myCell;
+  object_getInstanceVariable(self, "_cell", (void**)&myCell);
 
-  if(myCell->state == GSThemeSelectedState)
+  if(myCell.state == GSThemeSelectedState)
     return [NSColor whiteColor];
-  if (myCell->is_disabled)
+  if (myCell.is_disabled)
     return [NSColor disabledControlTextColor];
   else
     return [NSColor controlTextColor];
